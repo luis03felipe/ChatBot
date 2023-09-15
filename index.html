@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
     <!--Fontes do Google-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,6 +16,29 @@
       rel="stylesheet" />
   </head>
   <body>
-    <h1>Ola mundo</h1>
+    <div class="chatbot">
+      <header>
+        <h2>ChatBot</h2>
+      </header>
+      <!-- Balão de boas-vindas -->
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-symbols-outlined">smart_toy</span>
+          <p>
+            Olá!👋 <br />
+            Como posso ajudar você hoje?
+          </p>
+        </li>
+        <!-- Balão de mensagem do usuário -->
+        <li class="chat outgoing">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </li>
+      </ul>
+      <!-- Input das mensagens -->
+      <div class="chat-input">
+        <textarea placeholder="Escreva sua mensagem..." required></textarea>
+        <span id="send-btn" class="material-symbols-outlined">send</span>
+      </div>
+    </div>
   </body>
 </html>
