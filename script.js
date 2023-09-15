@@ -22,6 +22,11 @@ const handleChat = () => {
 
   //Adiciona a mensagem do usuário na chatbox
   chatbox.appendChild(createChatLi(userMessage, "outgoing"))
+
+  //Adiciona o "Digitando..."
+  setTimeout(() => {
+    chatbox.appendChild(createChatLi("Digitando...", "incoming"))
+  }, 600)
 }
 
 sendChatBtn.addEventListener("click", handleChat)
