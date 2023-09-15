@@ -10,11 +10,44 @@ body {
   background: #e3f2fd;
 }
 
+.chatbot-toggler {
+  position: fixed;
+  right: 40px;
+  bottom: 35px;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  background: #daa520;
+  border-radius: 50%;
+}
+
+.chatbot-toggler span {
+  position: absolute;
+}
+/*Balão organizado, mostra na ordem do HTML quem foi inserido primeiro, quem estiver por ultimo não aparece se a opacidade for = a 0*/
+.show-chatbot .chatbot-toggler span:first-child,
+.chatbot-toggler span:last-child {
+  opacity: 0;
+}
+
+.show-chatbot .chatbot-toggler span:last-child {
+  opacity: 1;
+}
+
 .chatbot {
   position: fixed;
   right: 40px;
   bottom: 100px;
   width: 420px;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   overflow: hidden;
   background: #fff;
   border-radius: 15px;
@@ -22,15 +55,32 @@ body {
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
 }
 
+.show-chatbot .chatbot {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .chatbot header {
   background: #daa520;
   padding: 16px 0;
   text-align: center;
+  position: relative;
 }
 
 .chatbot header h2 {
   color: #fff;
   font-size: 1.4rem;
+}
+
+.chatbot header span {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  transform: translateY(-50%);
 }
 
 .chatbot .chatbox {
@@ -108,4 +158,21 @@ body {
 /* Deixa o botão de enviar visivel ou não. */
 .chat-input textarea:valid ~ span {
   visibility: visible;
+}
+
+@media (max-width: 490px) {
+  .chatbot {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .chatbot .chatbox {
+    height: 90%;
+  }
+  .chatbot header span {
+    display: block;
+  }
 }
