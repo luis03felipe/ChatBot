@@ -3,7 +3,7 @@ const sendChatBtn = document.querySelector(".chat-input span")
 const chatbox = document.querySelector(".chatbox")
 
 let userMessage
-const API_KEY = "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"
+const API_KEY = "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"
 
 const createChatLi = (message, className) => {
   // Cria um elemento chat <li> com mensagem passada e className
