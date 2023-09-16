@@ -5,7 +5,8 @@ const chatbotToggler = document.querySelector(".chatbot-toggler")
 const chatbotCloseBtn = document.querySelector(".close-btn")
 
 let userMessage
-const API_KEY = "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"
+const API_KEY = "Coloque uma API KEY aqui"
+const inputInitHeight = chatInput.scrollHeight
 
 const createChatLi = (message, className) => {
   // Cria um elemento chat <li> com mensagem passada e className
@@ -55,6 +56,7 @@ const handleChat = () => {
   userMessage = chatInput.value.trim() //recebendo a mensagem inserida e removendo espaços em branco extras
   if (!userMessage) return
   chatInput.value = ""
+  chatInput.style.height = `${inputInitHeight}px`
 
   //Adiciona a mensagem do usuário na chatbox
   chatbox.appendChild(createChatLi(userMessage, "outgoing"))
@@ -68,6 +70,18 @@ const handleChat = () => {
     generateResponse(incomingChatLi)
   }, 600)
 }
+
+//Ajusta o tamanho da area de input de texto com base no conteudo dentro do mesmo
+chatInput.addEventListener("input", () => {
+  chatInput.style.height = `${inputInitHeight}px`
+  chatInput.style.height = `${chatInput.scrollHeight}px`
+})
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+    e.preventDefault()
+    handleChat()
+  }
+})
 
 sendChatBtn.addEventListener("click", handleChat)
 chatbotToggler.addEventListener("click", () =>

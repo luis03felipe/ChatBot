@@ -154,6 +154,7 @@ body {
   width: 100%;
   border: none;
   outline: none;
+  max-height: 180px;
   font-size: 0.95rem;
   resize: none;
   padding: 16px 15px 16px 0;
