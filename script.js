@@ -1,9 +1,11 @@
 const chatInput = document.querySelector(".chat-input textarea")
 const sendChatBtn = document.querySelector(".chat-input span")
 const chatbox = document.querySelector(".chatbox")
+const chatbotToggler = document.querySelector(".chatbot-toggler")
+const chatbotCloseBtn = document.querySelector(".close-btn")
 
 let userMessage
-const API_KEY = "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"
+const API_KEY = "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"
 
 const createChatLi = (message, className) => {
   // Cria um elemento chat <li> com mensagem passada e className
@@ -11,9 +13,10 @@ const createChatLi = (message, className) => {
   chatLi.classList.add("chat", className)
   let chatContent =
     className === "outgoing"
-      ? `<p>${message}</p>`
-      : `<span class="material-symbols-outlined">smart_toy</span><p>${message}</p>`
+      ? `<p></p>`
+      : `<span class="material-symbols-outlined">smart_toy</span><p></p>`
   chatLi.innerHTML = chatContent
+  chatLi.querySelector("p").textContent = message
   return chatLi
 }
 
@@ -41,24 +44,35 @@ const generateResponse = (incomingChatLi) => {
       messageElement.textContent = data.choices[0].message.content
     })
     .catch((error) => {
+      messageElement.classList.add("error")
       messageElement.textContent =
         "Opa, algo deu errado. Por favor, tente novamente!"
     })
+    .finally(() => chatbox.scrollTo(0, chatbox.scrollHeight))
 }
 
 const handleChat = () => {
   userMessage = chatInput.value.trim() //recebendo a mensagem inserida e removendo espaços em branco extras
   if (!userMessage) return
+  chatInput.value = ""
 
   //Adiciona a mensagem do usuário na chatbox
   chatbox.appendChild(createChatLi(userMessage, "outgoing"))
-  const incomingChatLi = createChatLi("Digitando...", "incoming")
+  chatbox.scrollTo(0, chatbox.scrollHeight)
 
   //Adiciona o "Digitando..."
   setTimeout(() => {
+    const incomingChatLi = createChatLi("Digitando...", "incoming")
     chatbox.appendChild(incomingChatLi)
+    chatbox.scrollTo(0, chatbox.scrollHeight)
     generateResponse(incomingChatLi)
   }, 600)
 }
 
 sendChatBtn.addEventListener("click", handleChat)
+chatbotToggler.addEventListener("click", () =>
+  document.body.classList.toggle("show-chatbot")
+)
+chatbotCloseBtn.addEventListener("click", () =>
+  document.body.classList.remove("show-chatbot")
+)

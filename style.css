@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -25,6 +25,11 @@ body {
   cursor: pointer;
   background: #daa520;
   border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.show-chatbot .chatbot-toggler {
+  transform: rotate(90deg);
 }
 
 .chatbot-toggler span {
@@ -51,8 +56,10 @@ body {
   overflow: hidden;
   background: #fff;
   border-radius: 15px;
+  transform-origin: bottom right;
   box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
 }
 
 .show-chatbot .chatbot {
@@ -113,10 +120,16 @@ body {
 .chatbox .chat p {
   color: #fff;
   max-width: 75%;
+  white-space: pre-wrap;
   font-size: 0.95rem;
   padding: 12px 16px;
   border-radius: 10px 10px 0 10px;
   background: #daa520;
+}
+
+.chatbox .chat p.error {
+  color: #721c24;
+  background: #f8d7da;
 }
 
 .chatbox .incoming p {
